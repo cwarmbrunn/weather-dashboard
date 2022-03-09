@@ -10,7 +10,7 @@ Creating a weather dashboard with form inputs that displays the weather for vari
 
 **Live Site:**
 
-Head over to view the page live!
+Head over to https://cwarmbrunn.github.io/weather-dashboard/ to view the page live!
 
 ---
 
