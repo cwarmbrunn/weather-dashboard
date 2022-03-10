@@ -28,49 +28,103 @@
         <h1><strong>Weather Dashboard</strong></h1>
     </div>
     </header>
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
 
-            <!-- CARD #1 - SEARCH BY CITY -->
-            <div class="card">
-                <h3 class="card-header">
-                    Search By City
-                </h3>
-                <!-- FORM START -->
-                <form id="user-form" class="card-body">
-                    <label class="form-label" for="city">City</label>
-                    <input name="city" id="city" type="text" autofocus="true" class="form-input"
-                        placeholder="What City Do You Want Weather For?">
-                    <button type="submit" class="btn"><i class="fa fa-search"></i> View Forecast</button>
-                </form>
-            </div>
+    <div class="col-12 col-md-4">
 
-            <!-- CARD #2 - CITY SEARCH HISTORY -->
-            <div class="card">
-                <h3 class="card-header">
-                    Search History
-                </h3>
-                <!-- Commenting out for future reference -->
-                <!-- <button class="btn" type="button" id="clear-history">Clear History</button> -->
-                <ul class="list-group">
-
-                </ul>
-            </div>
+        <!-- CARD #1 - SEARCH BY CITY -->
+        <div class="card">
+            <h3 class="card-header">
+                Search For A City
+            </h3>
+            <!-- FORM START -->
+            <form id="user-form" class="card-body">
+                <label class="form-label" for="city">City</label>
+                <input name="city" id="city" type="text" autofocus="true" class="form-input"
+                    placeholder="What City Do You Want Weather For?">
+                <button type="submit text-align-center" class="btn"><i class="fa fa-search"></i> Search</button>
+            </form>
         </div>
 
-        <!-- CURRENT WEATHER CONTAINER -->
-        <div class=" col-12 col-md-8 col-sm-8">
-            <div class="row ml-2 border border-dark rounded">
-                <div class="col-sm-12" id="current weather"></div>
-                <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3>
-                <p>Temperature: <span class="current" id="temperature"></span></p>
-                <p>Humidity: <span class="current" id="humidity"></span></p>
-                <p>Wind Speed: <span class="current" id="wind-speed"></span></p>
-                <p>UV Index: <span class="current bg-danger rounded py-2 px-2 text-white" id="uv-index"></span></p>
+        <!-- CARD #2 - CITY SEARCH HISTORY -->
+        <div class="card">
+            <h3 class="card-header">
+                Search History
+            </h3>
+            <!-- Commenting out for future reference -->
+            <!-- <button class="btn" type="button" id="clear-history">Clear History</button> -->
+            <ul class="list-group">
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- CURRENT WEATHER CONTAINER -->
+    <div class=" col-sm-8">
+        <div class="row ml-2 border border-dark rounded">
+            <div class="col-sm-12" id="current weather"></div>
+            <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3>
+            <p>Temp:<span class="current" id="temperature"></span></p>
+            <p>Humidity: <span class="current" id="humidity"></span></p>
+            <p>Wind Speed: <span class="current" id="wind-speed"></span></p>
+            <p>UV Index: <span class="current bg-danger rounded py-2 px-2 text-white" id="uv-index"></span></p>
+        </div>
+    </div>
+
+    <!-- ROW - FUTURE WEATHER DATA-->
+
+    <!-- DAY 1 -->
+    <div class="col-sm-12" id="future-weather">
+        <h3> Five Day Forecast:</h3>
+        <div class="row">
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="date1"></p>
+                <span id="weather-icon1"></span>
+                <p>Temp:<span id="temp-1"></span></p>
+                <p>Wind:<span id="wind-1"></span></p>
+                <p>Humidity:<span id="humidity-1"></span></p>
+
             </div>
 
-            <!-- CARD # 3 - FUTURE WEATHER DATA-->
-    </main>
+            <!-- DAY 2 -->
+
+
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="date2"></p>
+                <span id="weather-icon2"></span>
+                <p>Temp:<span id="temp-2"></span></p>
+                <p>Wind:<span id="wind-2"></span></p>
+                <p>Humidity:<span id="humidity-2"></span></p>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="date3"></p>
+                <span id="weather-icon3"></span>
+                <p>Temp:<span id="temp-3"></span></p>
+                <p>Wind:<span id="wind-3"></span></p>
+                <p>Humidity:<span id="humidity-3"></span></p>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="date4"></p>
+                <span id="weather-icon4"></span>
+                <p>Temp:<span id="temp-4"></span></p>
+                <p>Wind:<span id="wind-4"></span></p>
+                <p>Humidity:<span id="humidity-4"></span></p>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="date5"></p>
+                <span id="weather-icon5"></span>
+                <p>Temp:<span id="temp-5"></span></p>
+                <p>Wind:<span id="wind-5"></span></p>
+                <p>Humidity:<span id="humidity-5"></span></p>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT LINK -->
     <script src="./assets/js/script.js"></script>
 </body>
