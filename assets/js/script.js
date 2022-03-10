@@ -1,13 +1,14 @@
+/* API Key */
+const apiKey = "54ac21503fc0753a2540e683d733804c";
+
+// Declare City to Store Searched Variable */
+var city = "";
 /* Declare User Form Variable */
 var userFormEl = document.getElementById("#user-form");
 /* Declare City Input Variable */
 var cityInputEl = document.querySelector("#city");
-/* Declare City Container Variable */
-var cityContainerEl = document.querySelector("#weather-container");
 /* Declare City Search Term Variable */
 var citySearchTerm = document.querySelector("#city-search-term");
-/* Declare City Buttons Variable */
-var cityButtonsEl = document.querySelector("#city-buttons");
 
 // TODO: Find a way to use localStorage to store persistent data (past city searches)
 var formSubmitHandler = function (event) {
@@ -28,5 +29,12 @@ var formSubmitHandler = function (event) {
 
 var getCityWeather = function (city) {
   // Format the One Call API - Weather Dashboard URL
-  // var apiUrl = "" +
+
+  // current.uvi  = Current UV index
+  fetch(
+    "https://api.openweathermap.org/data/2.5/onecall?q=" +
+      city +
+      "&units=imperial&appid=" +
+      apiKey
+  );
 };
