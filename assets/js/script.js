@@ -1,5 +1,11 @@
 /* API Key */
-const apiKey = "";
+const apiKey = "449a366ead9b85f401e6712d2454211d";
+
+var testKey =
+  "http://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=" +
+  apiKey;
+
+console.log(testKey);
 
 // Declare City to Store Searched Variable */
 var city = "";
@@ -36,11 +42,11 @@ else {
 };
 
 var getCityWeather = function (city) {
-  // Format the One Call API - Weather Dashboard URL
+  // Format the One Call API - Weather Dashboard UR
 
   // current.uvi  = Current UV index
   fetch(
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "http://api.openweathermap.org/data/2.5/onecall?" +
       { city } +
       "&appid=" +
       { apiKey }
