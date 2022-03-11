@@ -195,6 +195,26 @@ var getCityWeather = function (city) {
         day4Hum.innerText = data.list[4].wind.speed + " MPH";
 
         // DAY 5 DATA //
+        var day5Icon = document.createElement("img");
+
+        var dayFiveUrl = `https://openweathermap.org/img/w/${data.list[5].weather[0].icon}.png`;
+
+        var day5Temp = document.getElementById("temp-5");
+        var day5Wind = document.getElementById("wind-5");
+        var day5Hum = document.getElementById("hum-5");
+
+        // **TODO: Need to revisit/adjust this
+        currentDate.textContent = data.list[5].dt_txt;
+
+        dayFive.append(day5Temp);
+        dayFive.append(day5Icon);
+        dayFive.append(day5Wind);
+        dayFive.append(day5Hum);
+
+        day5Icon.setAttribute("src", dayFiveUrl);
+        day5Temp.innerText = data.list[5].main.temp + "  °F";
+        day5Wind.innerText = data.list[5].main.humidity + " %";
+        day5Hum.innerText = data.list[5].wind.speed + " MPH";
       });
 
       // Else statement if city does not return with ok response
