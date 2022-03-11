@@ -22,6 +22,9 @@ var citySearchContainer = document.getElementById("city-history");
 /* CURRENT WEATHER ICON - Declare Current Weather Icon */
 var cityWeatherIcon = document.getElementById("current-icon");
 
+/* CURRENT WEATHER CONTAINER - Declare Current Weather Area */
+var cityCurrentWeatherEl = document.getElementById("current-weather");
+
 // TODO: Find a way to use localStorage to store persistent data (past city searches)
 var formSubmitHandler = function (event) {
   // Stops page from refreshing
@@ -48,7 +51,20 @@ var getCityWeather = function (city) {
     console.log(response);
 
     if (response.ok) {
-      response.json().then(function (data) {});
+      response.json().then(function (data) {
+        console.log(data);
+
+        var cityName = document.createElement("h3");
+        var currentDate = document.createElement("p");
+
+        // Setting text of the h3 element and p element
+        cityName.textContent = data[city].city.name;
+        currentDate.textContent = data[city].dt_txt;
+
+        // Append dynamically generate HTML to div associated with current weather
+        cityCurrentWeatherEl.append(cityName);
+        cityCurrentWeatherEl.append(currentDate);
+      });
 
       // Else statement if city does not return with ok response
     } else {
@@ -56,6 +72,9 @@ var getCityWeather = function (city) {
     }
   });
 };
+
+// TODO: Set up city history function - this will allow users to see past cities they've searched
+var cityHistory = function () {};
 
 // Add Event Listeners to Forms
 userFormEl.addEventListener("submit", formSubmitHandler);
