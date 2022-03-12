@@ -58,7 +58,7 @@ var getCityWeather = function (city) {
     // Add in API Key
     "&appid=" +
     apiKey;
-
+  console.log(apiUrl);
   fetch(apiUrl).then(
     function (response) {
       if (response.ok) {
@@ -244,23 +244,29 @@ var cityHistory = function () {
   // Event handler will need to get the name of the city out of the element that was clicked on and
 };
 
-// var UVStatus = function (lat, lon) {
-//   var lat = "40.7143";
+var UVStatus = function (lat, lon) {
+  var lat = "40.7143";
 
-//   var lon = "-74.006";
+  // city.coord.lat;
 
-//   var UVUrl =
-//     "https://api.openweathermap.org/data/2.5/onecall?" +
-//     "lat=" +
-//     lat +
-//     "&lon=" +
-//     lon +
-//     "&appid=" +
-//     apiKey;
-//   debugger;
-//   console.log(UVUrl);
-//   console.log("Please Work! :)");
-// };
+  var lon = "-74.006";
+
+  // city.coord.lon;
+
+  var UVUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?" +
+    "lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&appid=" +
+    apiKey;
+
+  console.log(UVUrl);
+  console.log("Please Work! :)");
+};
+
+UVStatus();
 // **TODO: Find a way to use localStorage to store persistent data (past city searches)
 
 // Add Event Listeners to Forms
