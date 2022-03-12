@@ -48,6 +48,7 @@ var formSubmitHandler = function (event) {
 
 var getCityWeather = function (city) {
   // current.uvi  = Current UV index
+
   var apiUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     // Add in user's city input
@@ -58,157 +59,166 @@ var getCityWeather = function (city) {
     "&appid=" +
     apiKey;
 
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        console.log(data);
+  fetch(apiUrl).then(
+    function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
 
-        // CREATE CURRENT WEATHER ELEMENTS //
-        var cityName = document.createElement("h3");
-        var currentDate = document.createElement("p");
-        var weatherIcon = document.createElement("img");
+          // CREATE CURRENT WEATHER ELEMENTS //
+          var cityName = document.createElement("h3");
+          var currentDate = document.getElementById("current-date");
+          var weatherIcon = document.createElement("img");
 
-        // WEATHER ICON URL //
-        var iconUrl = `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`;
+          // WEATHER ICON URL //
+          var iconUrl = `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`;
 
-        // GET WEATHER ELEMENTS FROM HTML //
-        var currentTemp = document.getElementById("current-temp");
-        var currentHum = document.getElementById("current-hum");
-        var currentWind = document.getElementById("current-wind");
-        // **TODO: Need to find a way to pull the UV index
-        var currentUV = document.getElementById("current-uv");
+          // GET WEATHER ELEMENTS FROM HTML //
+          var currentTemp = document.getElementById("current-temp");
+          var currentHum = document.getElementById("current-hum");
+          var currentWind = document.getElementById("current-wind");
+          // **TODO: Need to find a way to pull the UV index
+          var currentUV = document.getElementById("current-uv");
 
-        // SET CITY NAME AND DATE TEXT CONTENT //
-        cityName.textContent = data.city.name;
+          // SET CITY NAME AND DATE TEXT CONTENT //
+          cityName.textContent = data.city.name;
 
-        // **TODO: Need to revisit/adjust this
-        currentDate.textContent = data.list[0].dt_txt;
+          // **TODO: Need to revisit/adjust this
+          currentDate.innerText = data.list[0].dt_txt;
 
-        // SET ATTRIBUTE FOR ICON URL //
-        weatherIcon.setAttribute("src", iconUrl);
+          // SET ATTRIBUTE FOR ICON URL //
+          weatherIcon.setAttribute("src", iconUrl);
 
-        // Prepending name, icon, and date to the current weather element
-        cityCurrentWeatherEl.prepend(cityName);
-        cityCurrentWeatherEl.prepend(weatherIcon);
-        cityCurrentWeatherEl.prepend(currentDate);
+          // Prepending name, icon, and date to the current weather element
+          cityCurrentWeatherEl.prepend(cityName);
+          cityCurrentWeatherEl.prepend(weatherIcon);
+          cityCurrentWeatherEl.prepend(currentDate);
 
-        // SET WEATHER ELMENTS TO DATA POINTS FROM API URL //
-        currentTemp.innerText = data.list[0].main.temp + "  °F";
-        currentHum.innerText = data.list[0].main.humidity + " %";
-        currentWind.innerText = data.list[0].wind.speed + " MPH";
+          // SET WEATHER ELMENTS TO DATA POINTS FROM API URL //
+          currentTemp.innerText = data.list[0].main.temp + "  °F";
+          currentHum.innerText = data.list[0].main.humidity + " %";
+          currentWind.innerText = data.list[0].wind.speed + " MPH";
 
-        // **TODO: Figure out how to grab UV Index + present color for favorable, moderate, or severe //
-        currentUV.innerHTML =
-          "<p> UV Index: <span class ='current bg-danger rounded py-2 px-2 text-white'> Hello World!</span></p>";
+          // **TODO: Figure out how to grab UV Index + present color for favorable, moderate, or severe //
+          currentUV.innerHTML =
+            "<p> UV Index: <span class ='current bg-danger rounded py-2 px-2 text-white'> Hello World!</span></p>";
 
-        // DAY 1 DATA //
+          // DAY 1 DATA //
 
-        var day1Icon = document.createElement("img");
+          var day1Icon = document.createElement("img");
+          //** TODO: Add in Day 1 Date
 
-        var dayOneUrl = `https://openweathermap.org/img/w/${data.list[1].weather[0].icon}.png`;
+          // **TODO: Need to revisit/adjust this
+          var day1Date = document.getElementById("date1");
 
-        var day1Temp = document.getElementById("temp-1");
-        var day1Wind = document.getElementById("wind-1");
-        var day1Hum = document.getElementById("hum-1");
-        //** TODO: Add in Day 1 Date
+          var dayOneUrl = `https://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`;
 
-        // **TODO: Need to revisit/adjust this
+          var day1Temp = document.getElementById("temp-1");
+          var day1Wind = document.getElementById("wind-1");
+          var day1Hum = document.getElementById("hum-1");
 
-        currentDate.textContent = data.list[1].dt_txt;
-        dayOne.prepend(day1Icon);
-        
-        day1Icon.setAttribute("src", dayOneUrl);
-        day1Temp.innerText = data.list[1].main.temp + "  °F";
-        day1Wind.innerText = data.list[1].main.humidity + " %";
-        day1Hum.innerText = data.list[1].wind.speed + " MPH";
+          day1Date.innerText = data.list[4].dt_txt;
+          dayOne.prepend(day1Icon);
 
-        // DAY 2 DATA //
+          day1Icon.setAttribute("src", dayOneUrl);
 
-        var day2Icon = document.createElement("img");
+          day1Temp.innerText = data.list[4].main.temp + "  °F";
+          day1Wind.innerText = data.list[4].wind.speed + " MPH";
+          day1Hum.innerText = data.list[4].main.humidity + " %";
 
-        var dayTwoUrl = `https://openweathermap.org/img/w/${data.list[2].weather[0].icon}.png`;
+          // DAY 2 DATA //
 
-        var day2Temp = document.getElementById("temp-2");
-        var day2Wind = document.getElementById("wind-2");
-        var day2Hum = document.getElementById("hum-2");
-        //** TODO: Add in Day 2 Date
+          var day2Icon = document.createElement("img");
 
-        // **TODO: Need to revisit/adjust this
-        currentDate.textContent = data.list[2].dt_txt;
+          var day2Date = document.getElementById("date2");
+          //** TODO: Add in Day 2 Date
 
-        dayTwo.prepend(day2Icon);
+          // **TODO: Need to revisit/adjust this
+          var dayTwoUrl = `https://openweathermap.org/img/w/${data.list[12].weather[0].icon}.png`;
 
-        day2Icon.setAttribute("src", dayTwoUrl);
-        day2Temp.innerText = data.list[2].main.temp + "  °F";
-        day2Wind.innerText = data.list[2].main.humidity + " %";
-        day2Hum.innerText = data.list[2].wind.speed + " MPH";
+          var day2Temp = document.getElementById("temp-2");
+          var day2Wind = document.getElementById("wind-2");
+          var day2Hum = document.getElementById("hum-2");
 
-        // DAY 3 DATA //
-        var day3Icon = document.createElement("img");
+          day2Date.textContent = data.list[12].dt_txt;
+          dayTwo.prepend(day2Icon);
 
-        var dayThreeUrl = `https://openweathermap.org/img/w/${data.list[3].weather[0].icon}.png`;
+          day2Icon.setAttribute("src", dayTwoUrl);
+          day2Temp.innerText = data.list[12].main.temp + "  °F";
+          day2Wind.innerText = data.list[12].wind.speed + " MPH";
+          day2Hum.innerText = data.list[12].main.humidity + " %";
 
-        var day3Temp = document.getElementById("temp-3");
-        var day3Wind = document.getElementById("wind-3");
-        var day3Hum = document.getElementById("hum-3");
-        //** TODO: Add in Day 3 Date
+          // DAY 3 DATA //
+          var day3Icon = document.createElement("img");
 
-        // **TODO: Need to revisit/adjust this
-        currentDate.textContent = data.list[3].dt_txt;
+          var dayThreeUrl = `https://openweathermap.org/img/w/${data.list[20].weather[0].icon}.png`;
 
-        dayThree.prepend(day3Icon);
-   
-        day3Icon.setAttribute("src", dayThreeUrl);
-        day3Temp.innerText = data.list[3].main.temp + "  °F";
-        day3Wind.innerText = data.list[3].main.humidity + " %";
-        day3Hum.innerText = data.list[3].wind.speed + " MPH";
+          //** TODO: Add in Day 3 Date
+          var day3Date = document.getElementById("date3");
+          // **TODO: Need to revisit/adjust this
+          var day3Temp = document.getElementById("temp-3");
+          var day3Wind = document.getElementById("wind-3");
+          var day3Hum = document.getElementById("hum-3");
 
-        // DAY 4 DATA //
-        var day4Icon = document.createElement("img");
+          day3Date.textContent = data.list[20].dt_txt;
 
-        var dayFourUrl = `https://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`;
+          dayThree.prepend(day3Icon);
 
-        var day4Temp = document.getElementById("temp-4");
-        var day4Wind = document.getElementById("wind-4");
-        var day4Hum = document.getElementById("hum-4");
-        //** TODO: Add in Day 4 Date
+          day3Icon.setAttribute("src", dayThreeUrl);
+          day3Temp.innerText = data.list[20].main.temp + "  °F";
+          day3Wind.innerText = data.list[20].wind.speed + " MPH";
+          day3Hum.innerText = data.list[20].main.humidity + " %";
 
-        // **TODO: Need to revisit/adjust this
-        currentDate.textContent = data.list[4].dt_txt;
+          // DAY 4 DATA //
+          var day4Icon = document.createElement("img");
 
-        dayFour.prepend(day4Icon);
+          var dayFourUrl = `https://openweathermap.org/img/w/${data.list[28].weather[0].icon}.png`;
+          //** TODO: Add in Day 4 Date
+          var day4Date = document.getElementById("date4");
+          // **TODO: Need to revisit/adjust this
+          var day4Temp = document.getElementById("temp-4");
+          var day4Wind = document.getElementById("wind-4");
+          var day4Hum = document.getElementById("hum-4");
 
-        day4Icon.setAttribute("src", dayFourUrl);
-        day4Temp.innerText = data.list[4].main.temp + "  °F";
-        day4Wind.innerText = data.list[4].main.humidity + " %";
-        day4Hum.innerText = data.list[4].wind.speed + " MPH";
+          day4Date.textContent = data.list[28].dt_txt;
 
-        // DAY 5 DATA //
-        var day5Icon = document.createElement("img");
+          dayFour.prepend(day4Icon);
 
-        var dayFiveUrl = `https://openweathermap.org/img/w/${data.list[5].weather[0].icon}.png`;
+          day4Icon.setAttribute("src", dayFourUrl);
+          day4Temp.innerText = data.list[28].main.temp + "  °F";
+          day4Wind.innerText = data.list[28].wind.speed + " MPH";
+          day4Hum.innerText = data.list[28].main.humidity + " %";
 
-        var day5Temp = document.getElementById("temp-5");
-        var day5Wind = document.getElementById("wind-5");
-        var day5Hum = document.getElementById("hum-5");
-        //** TODO: Add in Day 5 Date
+          // DAY 5 DATA //
+          var day5Icon = document.createElement("img");
 
-        // **TODO: Need to revisit/adjust this
-        currentDate.textContent = data.list[5].dt_txt;
+          var dayFiveUrl = `https://openweathermap.org/img/w/${data.list[36].weather[0].icon}.png`;
+          //** TODO: Add in Day 5 Date
 
-        dayFive.prepend(day5Icon);
-   
-        day5Icon.setAttribute("src", dayFiveUrl);
-        day5Temp.innerText = data.list[5].main.temp + "  °F";
-        day5Wind.innerText = data.list[5].main.humidity + " %";
-        day5Hum.innerText = data.list[5].wind.speed + " MPH";
-      });
+          var day5Date = document.getElementById("date5");
 
-      // Else statement if city does not return with ok response
-    } else {
-      alert("Error - City " + response.statusText);
+          // **TODO: Need to revisit/adjust this
+          var day5Temp = document.getElementById("temp-5");
+          var day5Wind = document.getElementById("wind-5");
+          var day5Hum = document.getElementById("hum-5");
+
+          day5Date.textContent = data.list[36].dt_txt;
+
+          dayFive.prepend(day5Icon);
+
+          day5Icon.setAttribute("src", dayFiveUrl);
+          day5Temp.innerText = data.list[36].main.temp + "  °F";
+          day5Wind.innerText = data.list[36].wind.speed + " MPH";
+          day5Hum.innerText = data.list[36].main.humidity + " %";
+        });
+
+        // Else statement if city does not return with ok response
+      } else {
+        alert("Error - City " + response.statusText);
+      }
     }
-  });
+    // .then(UVStatus())
+  );
 };
 
 // **TODO: Set up city history function - this will allow users to see past cities they've searched
@@ -234,6 +244,23 @@ var cityHistory = function () {
   // Event handler will need to get the name of the city out of the element that was clicked on and
 };
 
+// var UVStatus = function (lat, lon) {
+//   var lat = "40.7143";
+
+//   var lon = "-74.006";
+
+//   var UVUrl =
+//     "https://api.openweathermap.org/data/2.5/onecall?" +
+//     "lat=" +
+//     lat +
+//     "&lon=" +
+//     lon +
+//     "&appid=" +
+//     apiKey;
+//   debugger;
+//   console.log(UVUrl);
+//   console.log("Please Work! :)");
+// };
 // **TODO: Find a way to use localStorage to store persistent data (past city searches)
 
 // Add Event Listeners to Forms
