@@ -4,20 +4,14 @@ const apiKey = "449a366ead9b85f401e6712d2454211d";
 /* CITY DECLARATION - Declare City to Store Searched Variable */
 var city = "";
 
-/* PAST CITY DECLARATION - Declare pastCity to Store Past Searched Variable */
-var pastCity = "";
-
 /* USER FORM - Declare User Form Variable */
 var userFormEl = document.getElementById("user-form");
 
 /*CITY INPUT - Declare City Input Variable */
 var cityInputEl = document.querySelector(".form-input");
 
-/* CITY SEARCH TERM - Declare City Search Term Variable */
-var citySearchTerm = document.querySelector("#city-search-term");
-
 /* CITY SEARCH HISTORY - Declare Container for City Search History */
-var citySearchContainer = document.getElementById("city-history");
+var citySearchContainerEl = document.getElementById("city-history");
 
 /* CURRENT WEATHER CONTAINER - Declare Current Weather Area */
 var cityCurrentWeatherEl = document.getElementById("current-weather");
@@ -46,6 +40,7 @@ var formSubmitHandler = function (event) {
   // Gets value from the city input element and runs getCityWeather function
   if (city) {
     getCityWeather(city);
+    cityHistory(city);
     // Clear out old content
     cityInputEl.value = "";
   }
@@ -80,6 +75,7 @@ var getCityWeather = function (city) {
         var currentTemp = document.getElementById("current-temp");
         var currentHum = document.getElementById("current-hum");
         var currentWind = document.getElementById("current-wind");
+        // **TODO: Need to find a way to pull the UV index
         var currentUV = document.getElementById("current-uv");
 
         // SET CITY NAME AND DATE TEXT CONTENT //
@@ -102,7 +98,8 @@ var getCityWeather = function (city) {
         currentWind.innerText = data.list[0].wind.speed + " MPH";
 
         // **TODO: Figure out how to grab UV Index + present color for favorable, moderate, or severe //
-        currentUV.innerText = "Hi!";
+        currentUV.innerHTML =
+          "<p> UV Index: <span class ='current bg-danger rounded py-2 px-2 text-white'> Hello World!</span></p>";
 
         // DAY 1 DATA //
 
@@ -113,15 +110,13 @@ var getCityWeather = function (city) {
         var day1Temp = document.getElementById("temp-1");
         var day1Wind = document.getElementById("wind-1");
         var day1Hum = document.getElementById("hum-1");
+        //** TODO: Add in Day 1 Date
 
         // **TODO: Need to revisit/adjust this
+
         currentDate.textContent = data.list[1].dt_txt;
-
-        dayOne.append(day1Temp);
-        dayOne.append(day1Icon);
-        dayOne.append(day1Wind);
-        dayOne.append(day1Hum);
-
+        dayOne.prepend(day1Icon);
+        
         day1Icon.setAttribute("src", dayOneUrl);
         day1Temp.innerText = data.list[1].main.temp + "  °F";
         day1Wind.innerText = data.list[1].main.humidity + " %";
@@ -136,14 +131,12 @@ var getCityWeather = function (city) {
         var day2Temp = document.getElementById("temp-2");
         var day2Wind = document.getElementById("wind-2");
         var day2Hum = document.getElementById("hum-2");
+        //** TODO: Add in Day 2 Date
 
         // **TODO: Need to revisit/adjust this
         currentDate.textContent = data.list[2].dt_txt;
 
-        dayTwo.append(day2Temp);
-        dayTwo.append(day2Icon);
-        dayTwo.append(day2Wind);
-        dayTwo.append(day2Hum);
+        dayTwo.prepend(day2Icon);
 
         day2Icon.setAttribute("src", dayTwoUrl);
         day2Temp.innerText = data.list[2].main.temp + "  °F";
@@ -158,15 +151,13 @@ var getCityWeather = function (city) {
         var day3Temp = document.getElementById("temp-3");
         var day3Wind = document.getElementById("wind-3");
         var day3Hum = document.getElementById("hum-3");
+        //** TODO: Add in Day 3 Date
 
         // **TODO: Need to revisit/adjust this
         currentDate.textContent = data.list[3].dt_txt;
 
-        dayThree.append(day3Temp);
-        dayThree.append(day3Icon);
-        dayThree.append(day3Wind);
-        dayThree.append(day3Hum);
-
+        dayThree.prepend(day3Icon);
+   
         day3Icon.setAttribute("src", dayThreeUrl);
         day3Temp.innerText = data.list[3].main.temp + "  °F";
         day3Wind.innerText = data.list[3].main.humidity + " %";
@@ -180,14 +171,12 @@ var getCityWeather = function (city) {
         var day4Temp = document.getElementById("temp-4");
         var day4Wind = document.getElementById("wind-4");
         var day4Hum = document.getElementById("hum-4");
+        //** TODO: Add in Day 4 Date
 
         // **TODO: Need to revisit/adjust this
         currentDate.textContent = data.list[4].dt_txt;
 
-        dayFour.append(day4Temp);
-        dayFour.append(day4Icon);
-        dayFour.append(day4Wind);
-        dayFour.append(day4Hum);
+        dayFour.prepend(day4Icon);
 
         day4Icon.setAttribute("src", dayFourUrl);
         day4Temp.innerText = data.list[4].main.temp + "  °F";
@@ -202,15 +191,13 @@ var getCityWeather = function (city) {
         var day5Temp = document.getElementById("temp-5");
         var day5Wind = document.getElementById("wind-5");
         var day5Hum = document.getElementById("hum-5");
+        //** TODO: Add in Day 5 Date
 
         // **TODO: Need to revisit/adjust this
         currentDate.textContent = data.list[5].dt_txt;
 
-        dayFive.append(day5Temp);
-        dayFive.append(day5Icon);
-        dayFive.append(day5Wind);
-        dayFive.append(day5Hum);
-
+        dayFive.prepend(day5Icon);
+   
         day5Icon.setAttribute("src", dayFiveUrl);
         day5Temp.innerText = data.list[5].main.temp + "  °F";
         day5Wind.innerText = data.list[5].main.humidity + " %";
@@ -225,8 +212,27 @@ var getCityWeather = function (city) {
 };
 
 // **TODO: Set up city history function - this will allow users to see past cities they've searched
-// var pastCity is declared at the top - need to clear out existing information and replace with new
-var cityHistory = function () {};
+var cityHistory = function () {
+  // Add an onClick handler to each li to run the search again
+
+  // Step #1: Create the Element
+  var searchTermOne = document.createElement("li");
+
+  // Step #2: Append it to the unordered list
+
+  citySearchContainerEl.append(searchTermOne);
+
+  // Step #3: Add inner HTML
+
+  searchTermOne.innerHTML =
+    "<button type= 'text-align-center' class='btn'> Hello World! </button>";
+
+  // Step #4: Add the Event Listener Handler
+
+  // searchTermOne.addEventListener("click", alert("Hello World!"));
+  // Look up event.target to get the "city" name out of the element that was clicked
+  // Event handler will need to get the name of the city out of the element that was clicked on and
+};
 
 // **TODO: Find a way to use localStorage to store persistent data (past city searches)
 
