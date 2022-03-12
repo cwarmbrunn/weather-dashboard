@@ -65,6 +65,12 @@ var getCityWeather = function (city) {
         response.json().then(function (data) {
           console.log(data);
 
+          var cityLat = console.log(data.city.coord.lat);
+          var cityLon = console.log(data.city.coord.lon);
+
+          var lat = data.city.coord.lat;
+          var lon = data.city.coord.lon;
+
           // CREATE CURRENT WEATHER ELEMENTS //
           var cityName = document.createElement("h3");
           var currentDate = document.getElementById("current-date");
@@ -83,7 +89,6 @@ var getCityWeather = function (city) {
           // SET CITY NAME AND DATE TEXT CONTENT //
           cityName.textContent = data.city.name;
 
-          // **TODO: Need to revisit/adjust this
           currentDate.innerText = data.list[0].dt_txt;
 
           // SET ATTRIBUTE FOR ICON URL //
@@ -106,9 +111,7 @@ var getCityWeather = function (city) {
           // DAY 1 DATA //
 
           var day1Icon = document.createElement("img");
-          //** TODO: Add in Day 1 Date
-
-          // **TODO: Need to revisit/adjust this
+ 
           var day1Date = document.getElementById("date1");
 
           var dayOneUrl = `https://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`;
@@ -131,9 +134,8 @@ var getCityWeather = function (city) {
           var day2Icon = document.createElement("img");
 
           var day2Date = document.getElementById("date2");
-          //** TODO: Add in Day 2 Date
-
-          // **TODO: Need to revisit/adjust this
+      
+       
           var dayTwoUrl = `https://openweathermap.org/img/w/${data.list[12].weather[0].icon}.png`;
 
           var day2Temp = document.getElementById("temp-2");
@@ -153,9 +155,9 @@ var getCityWeather = function (city) {
 
           var dayThreeUrl = `https://openweathermap.org/img/w/${data.list[20].weather[0].icon}.png`;
 
-          //** TODO: Add in Day 3 Date
+
           var day3Date = document.getElementById("date3");
-          // **TODO: Need to revisit/adjust this
+      
           var day3Temp = document.getElementById("temp-3");
           var day3Wind = document.getElementById("wind-3");
           var day3Hum = document.getElementById("hum-3");
@@ -173,9 +175,9 @@ var getCityWeather = function (city) {
           var day4Icon = document.createElement("img");
 
           var dayFourUrl = `https://openweathermap.org/img/w/${data.list[28].weather[0].icon}.png`;
-          //** TODO: Add in Day 4 Date
+   
           var day4Date = document.getElementById("date4");
-          // **TODO: Need to revisit/adjust this
+         
           var day4Temp = document.getElementById("temp-4");
           var day4Wind = document.getElementById("wind-4");
           var day4Hum = document.getElementById("hum-4");
@@ -193,11 +195,11 @@ var getCityWeather = function (city) {
           var day5Icon = document.createElement("img");
 
           var dayFiveUrl = `https://openweathermap.org/img/w/${data.list[36].weather[0].icon}.png`;
-          //** TODO: Add in Day 5 Date
+
 
           var day5Date = document.getElementById("date5");
 
-          // **TODO: Need to revisit/adjust this
+
           var day5Temp = document.getElementById("temp-5");
           var day5Wind = document.getElementById("wind-5");
           var day5Hum = document.getElementById("hum-5");
@@ -245,14 +247,6 @@ var cityHistory = function () {
 };
 
 var UVStatus = function (lat, lon) {
-  var lat = "40.7143";
-
-  // city.coord.lat;
-
-  var lon = "-74.006";
-
-  // city.coord.lon;
-
   var UVUrl =
     "https://api.openweathermap.org/data/2.5/onecall?" +
     "lat=" +
@@ -262,11 +256,15 @@ var UVStatus = function (lat, lon) {
     "&appid=" +
     apiKey;
 
-  console.log(UVUrl);
-  console.log("Please Work! :)");
+  fetch(UVUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
 };
 
-UVStatus();
 // **TODO: Find a way to use localStorage to store persistent data (past city searches)
 
 // Add Event Listeners to Forms
