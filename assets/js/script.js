@@ -4,9 +4,6 @@ const apiKey = "449a366ead9b85f401e6712d2454211d";
 /* CITY DECLARATION - Declare City to Store Searched Variable */
 var city = "";
 
-/* PAST CITY DECLARATION - Declare Past City to Store User Searches */
-var pastCity = [];
-
 /* USER FORM - Declare User Form Variable */
 var userFormEl = document.getElementById("user-form");
 
@@ -37,6 +34,8 @@ var dayFour = document.getElementById("weather4");
 
 /* DAY FIVE - FUTURE WEATHER */
 var dayFive = document.getElementById("weather5");
+
+let citySearchHistory = JSON.parse(localStorage.getItem(city)) || [];
 
 var formSubmitHandler = function (event) {
   // Stops page from refreshing
@@ -276,24 +275,27 @@ var cityHistory = function (city) {
   // Add an onClick handler to each li to run the search again
 
   // Step #1: Create the Element
-  var searchTermOne = document.createElement("li");
+  var searchTerm = document.createElement("li");
 
   // Step #2: Append it to the unordered list
 
-  citySearchContainerEl.appendChild(searchTermOne);
+  citySearchContainerEl.appendChild(searchTerm);
 
   // Step #3: Add inner HTML
 
-  searchTermOne.innerHTML = `<button type= 'text-align-center' class='btn searchTerm'> ${city} </button>`;
+  searchTerm.innerHTML = `<button type= 'text-align-center' class='btn searchTerm'> ${city} </button>`;
 
-  // Step #4: Add the Event Listener Handler
+  // Step #4: Add the Event Listener Handler and have it run the getCityWeather(city) function when clicked
 
-  // searchTermOne.addEventListener("click", alert("Hello World!"));
   // Look up event.target to get the "city" name out of the element that was clicked
-  // Event handler will need to get the name of the city out of the element that was clicked on and
-};
 
-// **TODO: Find a way to use localStorage to store persistent data (past city searches)
+  // Use localStorage to collect the city term when a city is searched
+  var searchHistory = {
+    cityTerm: city,
+  };
+  citySearchHistory.push(searchHistory);
+  localStorage.setItem("city", JSON.stringify(citySearchHistory));
+};
 
 // Add Event Listeners to Forms
 userFormEl.addEventListener("submit", formSubmitHandler);
