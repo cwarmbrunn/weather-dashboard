@@ -41,7 +41,8 @@
                 <label class="form-label" for="city">City</label>
                 <input name="city" id="city" type="text" autofocus="true" class="form-input"
                     placeholder="Type City Name Here">
-                <button type="submit text-align-center" class="btn searchBtn"><i class="fa fa-search"></i> Search</button>
+                <button type="submit text-align-center" class="btn searchBtn"><i class="fa fa-search"></i>
+                    Search</button>
             </form>
         </div>
 
@@ -66,6 +67,7 @@
     <div class="col-sm-8" id="current-weather-container">
         <div class="row ml-2 border border-dark rounded">
             <div class="col-sm-12" id="current-weather">
+                <div id="city-details"></div>
                 <span id="current-date"></span>
                 <p>Temp: <span class="current" id="current-temp"></span></p>
                 <p>Humidity: <span class="current" id="current-hum"></span></p>
@@ -80,64 +82,70 @@
     <div class="col-sm-12" id="future-weather">
         <h3> 5-Day Forecast:</h3>
         <div class="row">
+            <div id="future-city-details"></div>
 
             <!-- DAY 1 -->
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <div id="weather1">
-                    <p id="date1"></p>
-                    <span id="weather-icon1"></span>
-                    <p>Temp: <span id="temp-1"></span></p>
-                    <p>Wind: <span id="wind-1"></span></p>
-                    <p>Humidity: <span id="hum-1"></span></p>
-                </div>
+                <div id="weather1"></div>
+                <p id="date1"></p>
+                <span id="weather-icon1"></span>
+                <p>Temp: <span id="temp-1"></span></p>
+                <p>Wind: <span id="wind-1"></span></p>
+                <p>Humidity: <span id="hum-1"></span></p>
+
             </div>
 
             <!-- DAY 2 -->
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <div id="weather2">
-                    <p id="date2"></p>
-                    <span id="weather-icon2"></span>
-                    <p>Temp: <span id="temp-2"></span></p>
-                    <p>Wind: <span id="wind-2"></span></p>
-                    <p>Humidity: <span id="hum-2"></span></p>
-                </div>
+                <div id="weather2"></div>
+                <p id="date2"></p>
+                <span id="weather-icon2"></span>
+                <p>Temp: <span id="temp-2"></span></p>
+                <p>Wind: <span id="wind-2"></span></p>
+                <p>Humidity: <span id="hum-2"></span></p>
+
             </div>
 
             <!-- DAY 3 -->
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <div id="weather3">
-                    <p id="date3"></p>
-                    <span id="weather-icon3"></span>
-                    <p>Temp: <span id="temp-3"></span></p>
-                    <p>Wind: <span id="wind-3"></span></p>
-                    <p>Humidity: <span id="hum-3"></span></p>
-                </div>
+                <div id="weather3"></div>
+                <p id="date3"></p>
+                <span id="weather-icon3"></span>
+                <p>Temp: <span id="temp-3"></span></p>
+                <p>Wind: <span id="wind-3"></span></p>
+                <p>Humidity: <span id="hum-3"></span></p>
             </div>
 
             <!-- DAY 4 -->
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <div id="weather4">
-                    <p id="date4"></p>
-                    <span id="weather-icon4"></span>
-                    <p>Temp: <span id="temp-4"></span></p>
-                    <p>Wind: <span id="wind-4"></span></p>
-                    <p>Humidity: <span id="hum-4"></span></p>
-                </div>
+                <div id="weather4"></div>
+                <p id="date4"></p>
+                <span id="weather-icon4"></span>
+                <p>Temp: <span id="temp-4"></span></p>
+                <p>Wind: <span id="wind-4"></span></p>
+                <p>Humidity: <span id="hum-4"></span></p>
             </div>
 
             <!-- DAY 5 -->
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <div id="weather5">
-                    <p id="date5"></p>
-                    <span id="weather-icon5"></span>
-                    <p>Temp: <span id="temp-5"></span></p>
-                    <p>Wind: <span id="wind-5"></span></p>
-                    <p>Humidity: <span id="hum-5"></span> </p>
-                </div>
+                <div id="weather5"></div>
+                <p id="date5"></p>
+                <span id="weather-icon5"></span>
+                <p>Temp: <span id="temp-5"></span></p>
+                <p>Wind: <span id="wind-5"></span></p>
+                <p>Humidity: <span id="hum-5"></span> </p>
             </div>
         </div>
     </div>
-    <!-- JAVASCRIPT LINK -->
+    </div>
+
+    <!--PRIMARY - JQUERY SCRIPT LINK -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- SECONDARY - MOMENT.JS SCRIPT LINK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <!-- TERTIARY - JAVASCRIPT SCRIPT LINK -->
     <script src="./assets/js/script.js"></script>
 </body>
 <!-- FOOTER -->

@@ -17,7 +17,7 @@ var cityInputEl = document.querySelector(".form-input");
 var citySearchContainerEl = document.getElementById("city-history");
 
 /* CURRENT WEATHER CONTAINER - Declare Current Weather Area */
-var cityCurrentWeatherEl = document.getElementById("current-weather");
+var cityCurrentWeatherEl = document.getElementById("city-details");
 
 //* CURRENT UV INDEX - Declare UV Index Container
 var UVI = document.getElementById("uvi");
@@ -94,13 +94,13 @@ var getCityWeather = function (city) {
               console.log(data);
               console.log(data[0].value);
 
-              // Conditional if value is greater than 8 and less than 11
-              if (data[0].value > 8 && data[0].value < 11) {
+              // Conditional if value is greater than 7 and less than 11
+              if (data[0].value > 7 && data[0].value < 11) {
                 UVI.className = "bg-danger text-white rounded py-2 px-2";
                 UVI.innerText = data[0].value;
 
-                // Conditional if value is greater than 3 and less than 7
-              } else if (data[0].value > 3 && data[0].value < 7) {
+                // Conditional if value is greater than 2 and less than 7
+              } else if (data[0].value > 2 && data[0].value < 7) {
                 UVI.className = "bg-warning text-white rounded py-2 px-2";
                 UVI.innerText = data[0].value;
                 // Conditional if value is greater than 0 and less than 2
@@ -135,12 +135,14 @@ var getCityWeather = function (city) {
         // SET ATTRIBUTE FOR ICON URL //
         weatherIcon.setAttribute("src", iconUrl);
 
+        cityCurrentWeatherEl.innerHTML = "";
+
         // Prepending name, icon, and date to the current weather element
         cityCurrentWeatherEl.prepend(cityName);
         cityCurrentWeatherEl.prepend(weatherIcon);
         cityCurrentWeatherEl.prepend(currentDate);
 
-        // SET WEATHER ELMENTS TO DATA POINTS FROM API URL //
+        // SET WEATHER ELEMENTS TO DATA POINTS FROM API URL //
         currentTemp.innerText = data.list[0].main.temp + "  °F";
         currentHum.innerText = data.list[0].main.humidity + " %";
         currentWind.innerText = data.list[0].wind.speed + " MPH";
@@ -158,6 +160,9 @@ var getCityWeather = function (city) {
         var day1Hum = document.getElementById("hum-1");
 
         day1Date.innerText = data.list[4].dt_txt;
+
+        // Clear Day One Inner HTML
+        dayOne.innerHTML = "";
         dayOne.prepend(day1Icon);
 
         day1Icon.setAttribute("src", dayOneUrl);
@@ -179,6 +184,10 @@ var getCityWeather = function (city) {
         var day2Hum = document.getElementById("hum-2");
 
         day2Date.textContent = data.list[12].dt_txt;
+
+        // Clear Day Two Inner HTML
+        dayTwo.innerHTML = "";
+
         dayTwo.prepend(day2Icon);
 
         day2Icon.setAttribute("src", dayTwoUrl);
@@ -199,6 +208,8 @@ var getCityWeather = function (city) {
 
         day3Date.textContent = data.list[20].dt_txt;
 
+        // Clear Day Three Inner HTML
+        dayThree.innerHTML = "";
         dayThree.prepend(day3Icon);
 
         day3Icon.setAttribute("src", dayThreeUrl);
@@ -219,6 +230,9 @@ var getCityWeather = function (city) {
 
         day4Date.textContent = data.list[28].dt_txt;
 
+        // Clear Day Four Inner HTML
+        dayFour.innerHTML = "";
+
         dayFour.prepend(day4Icon);
 
         day4Icon.setAttribute("src", dayFourUrl);
@@ -238,6 +252,9 @@ var getCityWeather = function (city) {
         var day5Hum = document.getElementById("hum-5");
 
         day5Date.textContent = data.list[36].dt_txt;
+
+        // Clear Day Five Inner HTML
+        dayFive.innerHTML = "";
 
         dayFive.prepend(day5Icon);
 
