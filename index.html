@@ -41,7 +41,7 @@
                 <label class="form-label" for="city">City</label>
                 <input name="city" id="city" type="text" autofocus="true" class="form-input"
                     placeholder="Type City Name Here">
-                <button type="submit text-align-center" class="btn"><i class="fa fa-search"></i> Search</button>
+                <button type="submit text-align-center" class="btn searchBtn"><i class="fa fa-search"></i> Search</button>
             </form>
         </div>
 
@@ -63,14 +63,14 @@
     </div>
 
     <!-- CURRENT WEATHER CONTAINER -->
-    <div class=" col-sm-8">
+    <div class="col-sm-8" id="current-weather-container">
         <div class="row ml-2 border border-dark rounded">
             <div class="col-sm-12" id="current-weather">
                 <span id="current-date"></span>
                 <p>Temp: <span class="current" id="current-temp"></span></p>
                 <p>Humidity: <span class="current" id="current-hum"></span></p>
                 <p>Wind Speed: <span class="current" id="current-wind"></span></p>
-                <p> UV Index: <span class="current" id="uvi"></span></p>
+                <p> UV Index: <span class="current rounded py-2 px-2" id="uvi"></span></p>
             </div>
         </div>
     </div>
