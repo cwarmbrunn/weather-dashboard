@@ -295,12 +295,9 @@ var cityHistory = function (city) {
 
   // Step #5: Add the Event Listener Handler and have it run the getCityWeather(city) function when clicked
   $(".searchTerm").on("click", function () {
-    var city = $(this).siblings("#city-history").val();
-
-    localStorage.getItem($(this).attr("searchTerm", city));
+    localStorage.getItem($(this).attr("cityTerm", city));
     getCityWeather(city);
   });
-  // Look up event.target to get the "city" name out of the element that was clicked
 };
 
 // Add Event Listeners to Forms
