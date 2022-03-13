@@ -295,7 +295,12 @@ var cityHistory = function (city) {
 
   // Step #5: Add the Event Listener Handler and have it run the getCityWeather(city) function when clicked
   $(".searchTerm").on("click", function () {
-    localStorage.getItem($(this).attr("cityTerm", city));
+    localStorage.getItem($(this).text());
+
+    // Set the city variable equal to the city information from the clicked button and trim any extra spaces
+    var city = $(this).text().trim();
+
+    //Run the getCityWeather(city) function
     getCityWeather(city);
   });
 };
