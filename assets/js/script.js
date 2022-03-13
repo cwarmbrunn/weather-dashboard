@@ -7,7 +7,7 @@ var city = "";
 /* USER FORM - Declare User Form Variable */
 var userFormEl = document.getElementById("user-form");
 
-/*CITY INPUT - Declare City Input Variable */
+/* CITY INPUT - Declare City Input Variable */
 var cityInputEl = document.querySelector(".form-input");
 
 /* CITY SEARCH HISTORY - Declare Container for City Search History */
@@ -15,6 +15,9 @@ var citySearchContainerEl = document.getElementById("city-history");
 
 /* CURRENT WEATHER CONTAINER - Declare Current Weather Area */
 var cityCurrentWeatherEl = document.getElementById("current-weather");
+
+//* CURRENT UV INDEX - Declare UV Index Container
+var UVI = document.getElementById("uvi");
 
 /* DAY ONE - FUTURE WEATHER */
 
@@ -64,12 +67,42 @@ var getCityWeather = function (city) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data);
-
-          var cityLat = console.log(data.city.coord.lat);
-          var cityLon = console.log(data.city.coord.lon);
-
+          // Set lat variable
           var lat = data.city.coord.lat;
+
+          console.log(data.city.coord.lat);
+          // Set lon variable
           var lon = data.city.coord.lon;
+
+          console.log(data.city.coord.lon);
+
+          // Get UV Index
+          let UVQueryURL =
+            "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
+            lat +
+            "&lon=" +
+            lon +
+            "&appid=" +
+            apiKey +
+            "&cnt=1";
+          fetch(UVQueryURL).then(function (response) {
+            if (response.ok) {
+              response.json().then(function (data) {
+                console.log(data);
+                console.log(data[0].value);
+                if (data[0].value > 7) {
+                  UVI.className = "bg-danger text-white rounded py-2 px-2";
+                  UVI.innerText = data[0].value;
+                } else if (data[0].value > 5) {
+                  UVI.className = "bg-warning text-white rounded py-2 px-2";
+                  UVI.innerText = data[0].value;
+                } else if (data[0].value > 2) {
+                  UVI.className = "bg-success text-white rounded py-2 px-2";
+                  UVI.innerText = data[0].value;
+                }
+              });
+            }
+          });
 
           // CREATE CURRENT WEATHER ELEMENTS //
           var cityName = document.createElement("h3");
@@ -83,8 +116,6 @@ var getCityWeather = function (city) {
           var currentTemp = document.getElementById("current-temp");
           var currentHum = document.getElementById("current-hum");
           var currentWind = document.getElementById("current-wind");
-          // **TODO: Need to find a way to pull the UV index
-          var currentUV = document.getElementById("current-uv");
 
           // SET CITY NAME AND DATE TEXT CONTENT //
           cityName.textContent = data.city.name;
@@ -104,14 +135,10 @@ var getCityWeather = function (city) {
           currentHum.innerText = data.list[0].main.humidity + " %";
           currentWind.innerText = data.list[0].wind.speed + " MPH";
 
-          // **TODO: Figure out how to grab UV Index + present color for favorable, moderate, or severe //
-          currentUV.innerHTML =
-            "<p> UV Index: <span class ='current bg-danger rounded py-2 px-2 text-white'> Hello World!</span></p>";
-
           // DAY 1 DATA //
 
           var day1Icon = document.createElement("img");
- 
+
           var day1Date = document.getElementById("date1");
 
           var dayOneUrl = `https://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`;
@@ -134,8 +161,7 @@ var getCityWeather = function (city) {
           var day2Icon = document.createElement("img");
 
           var day2Date = document.getElementById("date2");
-      
-       
+
           var dayTwoUrl = `https://openweathermap.org/img/w/${data.list[12].weather[0].icon}.png`;
 
           var day2Temp = document.getElementById("temp-2");
@@ -155,9 +181,8 @@ var getCityWeather = function (city) {
 
           var dayThreeUrl = `https://openweathermap.org/img/w/${data.list[20].weather[0].icon}.png`;
 
-
           var day3Date = document.getElementById("date3");
-      
+
           var day3Temp = document.getElementById("temp-3");
           var day3Wind = document.getElementById("wind-3");
           var day3Hum = document.getElementById("hum-3");
@@ -175,9 +200,9 @@ var getCityWeather = function (city) {
           var day4Icon = document.createElement("img");
 
           var dayFourUrl = `https://openweathermap.org/img/w/${data.list[28].weather[0].icon}.png`;
-   
+
           var day4Date = document.getElementById("date4");
-         
+
           var day4Temp = document.getElementById("temp-4");
           var day4Wind = document.getElementById("wind-4");
           var day4Hum = document.getElementById("hum-4");
@@ -196,9 +221,7 @@ var getCityWeather = function (city) {
 
           var dayFiveUrl = `https://openweathermap.org/img/w/${data.list[36].weather[0].icon}.png`;
 
-
           var day5Date = document.getElementById("date5");
-
 
           var day5Temp = document.getElementById("temp-5");
           var day5Wind = document.getElementById("wind-5");
@@ -219,7 +242,8 @@ var getCityWeather = function (city) {
         alert("Error - City " + response.statusText);
       }
     }
-    // .then(UVStatus())
+
+    //.then(UVStatus())
   );
 };
 
@@ -244,25 +268,6 @@ var cityHistory = function () {
   // searchTermOne.addEventListener("click", alert("Hello World!"));
   // Look up event.target to get the "city" name out of the element that was clicked
   // Event handler will need to get the name of the city out of the element that was clicked on and
-};
-
-var UVStatus = function (lat, lon) {
-  var UVUrl =
-    "https://api.openweathermap.org/data/2.5/onecall?" +
-    "lat=" +
-    lat +
-    "&lon=" +
-    lon +
-    "&appid=" +
-    apiKey;
-
-  fetch(UVUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        console.log(data);
-      });
-    }
-  });
 };
 
 // **TODO: Find a way to use localStorage to store persistent data (past city searches)
