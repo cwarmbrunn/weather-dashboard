@@ -285,16 +285,22 @@ var cityHistory = function (city) {
 
   searchTerm.innerHTML = `<button type= 'text-align-center' class='btn searchTerm'> ${city} </button>`;
 
-  // Step #4: Add the Event Listener Handler and have it run the getCityWeather(city) function when clicked
-
-  // Look up event.target to get the "city" name out of the element that was clicked
-
+  // Step #4: Save to localStorage
   // Use localStorage to collect the city term when a city is searched
   var searchHistory = {
     cityTerm: city,
   };
   citySearchHistory.push(searchHistory);
   localStorage.setItem("city", JSON.stringify(citySearchHistory));
+
+  // Step #5: Add the Event Listener Handler and have it run the getCityWeather(city) function when clicked
+  $(".searchTerm").on("click", function () {
+    var city = $(this).siblings("#city-history").val();
+
+    localStorage.getItem($(this).attr("searchTerm", city));
+    getCityWeather(city);
+  });
+  // Look up event.target to get the "city" name out of the element that was clicked
 };
 
 // Add Event Listeners to Forms
