@@ -12,25 +12,20 @@
     </style>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
-
     <!-- Font Awesome CSS Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
     <!-- CSS Stylesheet Link -->
     <link rel="stylesheet" href="./assets/css/style.css">
-
     <!-- Favicon Image Link-->
     <link rel="icon" type="image/svg+xml" href="./assets/images/icons/favicon.ico">
 </head>
 
-<body class="d-flex min-100-vh">
+<body class="flex-column min-100-vh">
     <div class="jumbotron container-fluid mt-2 text-center p-2">
         <h1><strong>Weather Dashboard</strong></h1>
     </div>
     </header>
-
     <div class="col-12 col-md-4">
-
         <!-- CARD #1 - SEARCH BY CITY -->
         <div class="card">
             <h3 class="card-header">
@@ -45,102 +40,86 @@
                     Search</button>
             </form>
         </div>
-
         <!-- CARD #2 - CITY SEARCH HISTORY -->
         <div class="card">
             <h3 class="card-header">
                 Search History
             </h3>
-
-
             <!-- Commenting out for future reference -->
             <!-- <button class="btn" type="button" id="clear-history">Clear History</button> -->
             <!-- CONTAINER FOR CITY SEARCH HISTORY -->
-
             <ul class="list-group" id="city-history">
-
             </ul>
         </div>
     </div>
-    <div class="d-flex flex-column">
-        <!-- CURRENT WEATHER CONTAINER -->
-        <div class="col-sm-8" id="current-weather-container">
-            <div class="row ml-2 border border-dark rounded">
-                <div class="col-sm-12" id="current-weather">
-                    <div id="city-details"></div>
-                    <span id="current-date"></span>
-                    <p>Temp: <span class="current" id="current-temp"></span></p>
-                    <p>Humidity: <span class="current" id="current-hum"></span></p>
-                    <p>Wind Speed: <span class="current" id="current-wind"></span></p>
-                    <p> UV Index: <span class="current rounded py-2 px-2" id="uvi"></span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ROW - FUTURE WEATHER DATA-->
-
-        <div class="col-sm-12" id="future-weather">
-            <h3> 5-Day Forecast:</h3>
-            <div class="row">
-                <div id="future-city-details"></div>
-
-                <!-- DAY 1 -->
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <div id="weather1"></div>
-                    <p id="date1"></p>
-                    <span id="weather-icon1"></span>
-                    <p>Temp: <span id="temp-1"></span></p>
-                    <p>Wind: <span id="wind-1"></span></p>
-                    <p>Humidity: <span id="hum-1"></span></p>
-
-                </div>
-
-                <!-- DAY 2 -->
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <div id="weather2"></div>
-                    <p id="date2"></p>
-                    <span id="weather-icon2"></span>
-                    <p>Temp: <span id="temp-2"></span></p>
-                    <p>Wind: <span id="wind-2"></span></p>
-                    <p>Humidity: <span id="hum-2"></span></p>
-
-                </div>
-
-                <!-- DAY 3 -->
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <div id="weather3"></div>
-                    <p id="date3"></p>
-                    <span id="weather-icon3"></span>
-                    <p>Temp: <span id="temp-3"></span></p>
-                    <p>Wind: <span id="wind-3"></span></p>
-                    <p>Humidity: <span id="hum-3"></span></p>
-                </div>
-
-                <!-- DAY 4 -->
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <div id="weather4"></div>
-                    <p id="date4"></p>
-                    <span id="weather-icon4"></span>
-                    <p>Temp: <span id="temp-4"></span></p>
-                    <p>Wind: <span id="wind-4"></span></p>
-                    <p>Humidity: <span id="hum-4"></span></p>
-                </div>
-
-                <!-- DAY 5 -->
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <div id="weather5"></div>
-                    <p id="date5"></p>
-                    <span id="weather-icon5"></span>
-                    <p>Temp: <span id="temp-5"></span></p>
-                    <p>Wind: <span id="wind-5"></span></p>
-                    <p>Humidity: <span id="hum-5"></span> </p>
-                </div>
+    <!-- CURRENT WEATHER CONTAINER -->
+    <div class="col-sm-8" id="current-weather-container">
+        <div class="row ml-2 border border-dark rounded">
+            <div class="col-sm-12" id="current-weather">
+                <div id="city-details"></div>
+                <span id="current-date"></span>
+                <p>Temp: <span class="current" id="current-temp"></span></p>
+                <p>Humidity: <span class="current" id="current-hum"></span></p>
+                <p>Wind Speed: <span class="current" id="current-wind"></span></p>
+                <p> UV Index: <span class="current rounded py-2 px-2" id="uvi"></span></p>
             </div>
         </div>
     </div>
+    <!-- ROW - FUTURE WEATHER DATA-->
+    <div class="col-sm-12" id="future-weather">
+        <h3> 5-Day Forecast:</h3>
+        <div class="row">
+            <div id="future-city-details"></div>
+            <!-- DAY 1 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <div id="weather1"></div>
+                <p id="date1"></p>
+                <span id="weather-icon1"></span>
+                <p>Temp: <span id="temp-1"></span></p>
+                <p>Wind: <span id="wind-1"></span></p>
+                <p>Humidity: <span id="hum-1"></span></p>
+            </div>
+            <!-- DAY 2 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <div id="weather2"></div>
+                <p id="date2"></p>
+                <span id="weather-icon2"></span>
+                <p>Temp: <span id="temp-2"></span></p>
+                <p>Wind: <span id="wind-2"></span></p>
+                <p>Humidity: <span id="hum-2"></span></p>
+            </div>
+            <!-- DAY 3 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <div id="weather3"></div>
+                <p id="date3"></p>
+                <span id="weather-icon3"></span>
+                <p>Temp: <span id="temp-3"></span></p>
+                <p>Wind: <span id="wind-3"></span></p>
+                <p>Humidity: <span id="hum-3"></span></p>
+            </div>
+            <!-- DAY 4 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <div id="weather4"></div>
+                <p id="date4"></p>
+                <span id="weather-icon4"></span>
+                <p>Temp: <span id="temp-4"></span></p>
+                <p>Wind: <span id="wind-4"></span></p>
+                <p>Humidity: <span id="hum-4"></span></p>
+            </div>
+            <!-- DAY 5 -->
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <div id="weather5"></div>
+                <p id="date5"></p>
+                <span id="weather-icon5"></span>
+                <p>Temp: <span id="temp-5"></span></p>
+                <p>Wind: <span id="wind-5"></span></p>
+                <p>Humidity: <span id="hum-5"></span> </p>
+            </div>
+        </div>
+    </div>
+    </div>
     <!--PRIMARY - JQUERY SCRIPT LINK -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
     <!-- SECONDARY - JAVASCRIPT SCRIPT LINK -->
     <script src="./assets/js/script.js"></script>
 </body>
